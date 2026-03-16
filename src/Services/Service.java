@@ -1,18 +1,16 @@
 package Services;
 
-import Payments.Card;
-import Payments.Cash;
 import Payments.Payment;
-import Payments.Wallet;
 import Users.Customer;
 import Users.ServiceProvider;
 import Feedback.Feedback;
+import java.util.Objects;
 
 public class Service {
     private int reqId;
     private String date;
     private double baseCost;
-    private String status;
+    private Status status;
     private Customer customer;
     private ServiceProvider serviceProvider;
     private Feedback feedback;
@@ -32,7 +30,7 @@ public class Service {
             this.baseCost = baseCost;
             this.date = date;
             this.customer = placedBy;
-            this.status = status;
+            this.status = Status.valueOf(status);
             this.type = type;
             doProceed = true;
         } else {
@@ -55,7 +53,7 @@ public class Service {
         return type;
     }
     public void assignedTo(ServiceProvider serviceProvider){
-        if(serviceProvider.getSkillType() != type){
+        if(!Objects.equals(serviceProvider.getSkillType(), type)){
             System.out.println(serviceProvider.getName() +" Service provider skills are not aligned with the service");
             isAssigned = false;
             return;
@@ -68,18 +66,18 @@ public class Service {
         return isAssigned;
     }
     public void addFeedback(int id, String comment, int rating){
-        if(this.status == "Completed"){
+        if(Objects.equals(this.status, Status.COMPLETED)){
             this.feedback = new Feedback(id, rating, comment);
         } else {
             System.out.println("Only Completed Request do have feedback");
         }
     }
     public void changeStatus(String status){
-        if(status == "Cancelled" && this.status != "Pending"){
+        if(Objects.equals(Status.valueOf(status), Status.CANCELLED) && !Objects.equals(this.status, Status.PENDING)){
             System.out.println("Only Pending requests can be cancelled");
             return;
         }
-        this.status = status;
+        this.status = Status.valueOf(status);
     }
     public int getReqId(){
         return reqId;
@@ -90,7 +88,7 @@ public class Service {
     public double getBaseCost(){
         return baseCost;
     }
-    public String getStatus(){
+    public Status getStatus(){
         return status;
     }
     public Customer getCustomer(){
@@ -100,7 +98,11 @@ public class Service {
         return serviceProvider;
     }
     public void getFeedback(){
-        System.out.println("Rating is: " + feedback.getRating());
-        System.out.println("Comment is: " + feedback.getComment());
+        if(feedback != null){
+            System.out.println("Rating is: " + feedback.getRating());
+            System.out.println("Comment is: " + feedback.getComment());
+            return;
+        }
+        System.out.println("Feedback does not exist");
     }
 }

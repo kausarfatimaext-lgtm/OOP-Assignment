@@ -2,8 +2,11 @@ package Users;
 
 import Services.DeviceRepair;
 import Services.Service;
+import Services.Status;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Stack;
 
 public class ServiceProvider extends User {
     private String skillType;
@@ -18,20 +21,17 @@ public class ServiceProvider extends User {
         if(!service.getIsAssigned()){
             return;
         }
-        for(int i = 0; i < services.size(); i++){
-            if(services.get(i).getType() == service.getType()){
+        for (Service value : services) {
+            if (Objects.equals(value.getType(), service.getType())) {
                 System.out.println("Service provider is not available");
                 return;
             }
         }
         services.add(service);
-        for(int i = 0; i < services.size(); i++){
-            System.out.println("------ " + services.get(i).getType());
-        }
     }
     public int getJobsCount(){
-        for(int i = 0; i < services.size(); i++){
-            if(services.get(i).getStatus() != "Completed" && services.get(i).getStatus() != "Cancelled"){
+        for (Service service : services) {
+            if (!Objects.equals(service.getStatus(), Status.COMPLETED) && !Objects.equals(service.getStatus(), Status.valueOf("CANCELLED"))) {
                 jobsCount++;
             }
         }

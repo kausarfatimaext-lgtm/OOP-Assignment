@@ -25,11 +25,11 @@ public class Customer extends User {
         this.services.add(service);
     }
     public void getServicesHistory(){
-        for(int i = 0; i < services.size(); i++){
-            System.out.println("Service Name: " + services.get(i).getType());
-            System.out.println("Service Status: " + services.get(i).getStatus());
-            System.out.println("Service Cost: " + services.get(i).getBaseCost());
-            System.out.println("Service ServiceProvider: " + services.get(i).getServiceProvider().getName());
+        for (Service service : services) {
+            System.out.println("Service Name: " + service.getType());
+            System.out.println("Service Status: " + service.getStatus());
+            System.out.println("Service Cost: " + service.getBaseCost());
+            System.out.println("Service ServiceProvider: " + service.getServiceProvider().getName());
         }
     }
     public boolean OnPayment(double amount){
@@ -37,7 +37,7 @@ public class Customer extends User {
             System.out.println("Wallet Balance is less than required amount");
             return false;
         }else{
-            walletBalance -= amount;
+            walletBalance -= (long) amount;
             return true;
         }
     }

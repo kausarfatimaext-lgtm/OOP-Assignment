@@ -18,9 +18,9 @@ void main() {
     ServiceProvider ahmad = new ServiceProvider(2, "Ahmad", "034536728387", "ahmad@gmail.com", "Food Delivery");
     ServiceProvider aliha = new ServiceProvider(3, "Aliha", "034509203909", "aliha@gmail.com", "Home Cleaning");
 
-    FoodDelivery foodDelivery= new FoodDelivery(1, "12/4/2026", 400, ali, "Assigned", "ABC", 40);
-    HomeCleaning homeCleaning1= new HomeCleaning(2, "12/4/2026", 400, Aisha, "Assigned", 45, 4);
-    HomeCleaning homeCleaning2= new HomeCleaning(3, "12/4/2026", 400, Aisha, "Assigned", 45, 4);
+    FoodDelivery foodDelivery= new FoodDelivery(1, "12/4/2026", 400, ali, "ASSIGNED", "ABC", 40);
+    HomeCleaning homeCleaning1= new HomeCleaning(2, "12/4/2026", 400, Aisha, "ASSIGNED", 45, 4);
+    HomeCleaning homeCleaning2= new HomeCleaning(3, "12/4/2026", 400, Aisha, "ASSIGNED", 45, 4);
 
     if(foodDelivery.getDoProceed()){
         Card card = new Card();
@@ -61,8 +61,8 @@ void main() {
         System.out.println("Request did not proceed");
     }
 
-    foodDelivery.changeStatus("Cancelled");
-    homeCleaning1.changeStatus("Completed");
+    foodDelivery.changeStatus("CANCELLED");
+    homeCleaning1.changeStatus("COMPLETED");
     homeCleaning1.addFeedback(1, "Service are good", 4);
     homeCleaning1.getFeedback();
 
