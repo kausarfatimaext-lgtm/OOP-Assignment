@@ -6,7 +6,7 @@ import Users.ServiceProvider;
 import Feedback.Feedback;
 import java.util.Objects;
 
-public class Service {
+public abstract class Service {
     private int reqId;
     private String date;
     private double baseCost;
