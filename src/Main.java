@@ -2,9 +2,9 @@ import Payments.Card;
 import Payments.Cash;
 import Payments.Payment;
 import Payments.Wallet;
-import Services.DeviceRepair;
 import Services.FoodDelivery;
 import Services.HomeCleaning;
+import Services.Service;
 import Users.Customer;
 import Users.ServiceProvider;
 
@@ -18,9 +18,9 @@ void main() {
     ServiceProvider ahmad = new ServiceProvider(2, "Ahmad", "034536728387", "ahmad@gmail.com", "Food Delivery");
     ServiceProvider aliha = new ServiceProvider(3, "Aliha", "034509203909", "aliha@gmail.com", "Home Cleaning");
 
-    FoodDelivery foodDelivery= new FoodDelivery(1, "12/4/2026", 400, ali, "ASSIGNED", "ABC", 40);
-    HomeCleaning homeCleaning1= new HomeCleaning(2, "12/4/2026", 400, Aisha, "ASSIGNED", 45, 4);
-    HomeCleaning homeCleaning2= new HomeCleaning(3, "12/4/2026", 400, Aisha, "ASSIGNED", 45, 4);
+    Service foodDelivery= new FoodDelivery(1, "12/4/2026", 400, ali, "ASSIGNED", "ABC", 40);
+    Service homeCleaning1= new HomeCleaning(2, "12/4/2026", 400, Aisha, "ASSIGNED", 45, 4);
+    Service homeCleaning2= new HomeCleaning(3, "12/4/2026", 400, Aisha, "ASSIGNED", 45, 4);
 
     if(foodDelivery.getDoProceed()){
         Card card = new Card();
